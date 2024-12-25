@@ -32,6 +32,8 @@ app.use((req, res, next) => {
 app.use('/', router);
 app.use('/sign-in', router);
 app.use('/home', router);
+app.use('/secretForm', router);
+app.use('/secretHome', router);
 
 
 app.get('/sign-out', (req,res,next) => {
@@ -42,6 +44,12 @@ app.get('/sign-out', (req,res,next) => {
         res.redirect('/');
     });
 });
+
+app.post("/sign-in", passport.authenticate("local", {
+    successRedirect: "/home",
+    failureRedirect: "/sign-in",
+    failureFlash: true
+}));
 
 app.post(
     "/",
@@ -98,11 +106,7 @@ app.post(
     }
 );
 
-app.post("/sign-in", passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/sign-in"
-})
-);  
+
 
 passport.use(new LocalStrategy(async (username, password, done) => {
     try {
@@ -110,16 +114,20 @@ passport.use(new LocalStrategy(async (username, password, done) => {
         const user = rows[0];
 
         if (!user) {
+            console.log("Incorrect username");
             return done(null, false, { message: "Incorrect username" });
         }
 
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
+            console.log("Incorrect password");
             return done(null, false, { message: "Incorrect password" });
         }
 
+        console.log("User authenticated successfully");
         return done(null, user); 
     } catch (err) {
+        console.error("Error during authentication:", err);
         return done(err);
     }
 }));
