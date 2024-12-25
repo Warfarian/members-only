@@ -39,7 +39,6 @@ body::before {
     color: aqua;
 }
 
-/* Typography */
 h1, h2, nav, button {
   font-family: 'Orbitron', sans-serif;
   text-transform: uppercase;
