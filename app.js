@@ -35,6 +35,7 @@ app.use('/home', router);
 app.use('/secretForm', router);
 app.use('/secretHome', router);
 
+app.use(express.static(path.join(__dirname,"public")));
 
 app.get('/sign-out', (req,res,next) => {
     req.logout((err)=>{

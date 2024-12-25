@@ -47,4 +47,17 @@ async function getUsernameById(user_id) {
     }
 }
 
-module.exports = { addMessage, getAllMessages, getSpecificMessages, getUsernameById };
+async function isAdmin(user_id) {
+    try {
+        const result = await pool.query("SELECT status FROM members WHERE user_id = $1", [user_id]);
+        if (result.rows.length > 0) {
+            return result.rows[0].status === 'admin';
+        }
+        return false;
+    } catch (err) {
+        console.error("Error checking admin status:", err);
+        return false;
+    }
+}
+
+module.exports = { addMessage, getAllMessages, getSpecificMessages, getUsernameById, isAdmin };

@@ -1,5 +1,5 @@
 const pool = require("../db/pool");
-const {addMessage, getAllMessages, getSpecificMessages, getUsernameById } = require("../db/queries");
+const {addMessage, getAllMessages, getSpecificMessages, getUsernameById, isAdmin } = require("../db/queries");
 
 require("dotenv").config()
 
@@ -25,11 +25,22 @@ async function fetchAllMessages(req,res){
         const results = await getAllMessages();
         const currentUsername = req.user ? await getUsernameById(req.user.user_id) : null;
         const user_id = req.user ? req.user.user_id : null;
+        const adminStatus = user_id ? await isAdmin(user_id) : false;
 
-        if (await checkStatus(req.user?.user_id) === 'elite') {
-            res.render("secretHome", { results, username: currentUsername, user_id });
+        if (await checkStatus(req.user?.user_id) === 'elite' || adminStatus) {
+            res.render("secretHome", { 
+                results, 
+                username: currentUsername, 
+                user_id,
+                isAdmin: adminStatus 
+            });
         } else {
-            res.render("home", { results, username: currentUsername, user_id });
+            res.render("home", { 
+                results, 
+                username: currentUsername, 
+                user_id,
+                isAdmin: false 
+            });
         }
     } catch (err) {
         console.error("Error fetching all messages:", err);

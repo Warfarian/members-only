@@ -1,0 +1,501 @@
+/* Add custom font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Add fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Press+Start+2P&display=swap');
+
+/* Global Styles */
+:root {
+  --neon-primary: #4deeea;
+  --neon-secondary: #7c26f8;
+  --neon-accent: #f769a3;
+  --dark-bg: #0f1123;
+}
+
+body {
+    background-image: url('https://storage.modworkshop.net/mods/images/70471_1608988291_4b0cdca7e52266bcddc8728f70975154.gif');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+  }
+  
+/* Add overlay to ensure content readability */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 17, 35, 0.85); /* Using dark-bg color with opacity */
+  z-index: -1;
+}
+#msg{
+    font-family: 'press start 2p';
+}
+
+#highSociety{
+    color: aqua;
+}
+
+/* Typography */
+h1, h2, nav, button {
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h1 {
+  color: var(--neon-primary);
+  text-align: center;
+  font-size: 3rem;
+  text-shadow: 0 0 10px var(--neon-primary);
+  margin-bottom: 0.5rem;
+  animation: neonPulse 1.5s infinite alternate;
+}
+
+h2 {
+  color: var(--neon-secondary);
+  text-align: center;
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px var(--neon-secondary);
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--neon-secondary);
+  padding-bottom: 1rem;
+}
+
+nav a {
+  color: var(--neon-accent);
+  text-decoration: none;
+  font-weight: bold;
+  transition: text-shadow 0.3s;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--neon-accent);
+  transition: width 0.3s;
+}
+
+/* Delete Button Container */
+form[action="/delete-message"] {
+  background: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border: none;
+  width: auto;
+  display: inline-block;
+}
+
+/* Delete Button */
+#deleteButton {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  padding: 4px 8px;
+  margin: 0;
+  background: rgba(124, 38, 248, 0.3);
+  border: 1px solid var(--neon-secondary);
+  color: var(--neon-accent);
+  width: auto;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+#deleteButton:hover {
+  opacity: 1;
+  background: var(--neon-secondary);
+  transform: scale(1.05);
+  box-shadow: 0 0 8px var(--neon-secondary);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Forms */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--neon-primary);
+  animation: borderGlow 3s infinite alternate;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--neon-primary);
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  background: rgba(15, 17, 35, 0.95);
+  border: none;
+  border-bottom: 2px solid var(--neon-primary);
+  transition: all 0.3s;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  outline: none;
+}
+
+input:focus {
+  border-bottom-color: var(--neon-accent);
+  transform: translateY(-2px);
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background: var(--neon-secondary);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: all 0.3s;
+}
+
+button:hover::before {
+  animation: shine 0.5s forwards;
+}
+
+button:hover {
+  background: var(--neon-accent);
+  box-shadow: 0 0 15px var(--neon-accent);
+}
+
+/* Message Board */
+.messageBoard {
+  font-family: 'press start 2p', courier;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: rgba(15, 17, 35, 0.95);
+  border-radius: 10px;
+  border: 1px solid var(--neon-primary);
+  box-shadow: 0 0 20px rgba(77, 238, 234, 0.2);
+}
+
+.messageBoard > div > div {
+  font-family: 'press start 2p', courier;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid var(--neon-secondary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.messageBoard > div > div:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-accent);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.messageBoard > div > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--neon-primary);
+  transition: all 0.3s ease;
+}
+
+label{
+    font-family: 'Orbitron', sans-serif;
+}
+
+.messageBoard > div > div:hover::before {
+  background: var(--neon-accent);
+}
+
+/* Message username styling */
+.messageBoard div:first-child {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: var(--neon-accent);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Message content styling */
+.messageBoard div:nth-child(2) {
+  font-family: 'Orbitron', sans-serif;
+  line-height: 1.6;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(77, 238, 234, 0.3);
+}
+
+/* Form message input styling */
+form div:first-child {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: var(--neon-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Add message form styling */
+form[action="/home"], 
+form[action="/secretHome"] {
+  background: rgba(15, 17, 35, 0.95);
+  border: 1px solid var(--neon-primary);
+  box-shadow: 0 0 20px rgba(77, 238, 234, 0.2);
+}
+
+/* Message input field */
+input[name="message"] {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--neon-secondary);
+  padding: .4rem;
+  border-radius: 5px;
+}
+
+input[name="message"]:focus {
+  border-color: var(--neon-accent);
+  box-shadow: 0 0 15px rgba(247, 105, 163, 0.3);
+}
+
+/* Links */
+a {
+  color: var(--neon-primary);
+  text-decoration: none;
+  transition: text-shadow 0.3s;
+}
+
+a:hover {
+  text-shadow: 0 0 8px var(--neon-primary);
+}
+
+#sign-in-anchor {
+  text-align: center;
+  margin-top: 1rem;
+  color: rgb(7, 202, 241);
+}
+
+/* Animations */
+@keyframes neonPulse {
+  from {
+    text-shadow: 0 0 5px var(--neon-primary),
+                 0 0 10px var(--neon-primary),
+                 0 0 15px var(--neon-primary);
+  }
+  to {
+    text-shadow: 0 0 10px var(--neon-primary),
+                 0 0 20px var(--neon-primary),
+                 0 0 30px var(--neon-primary);
+  }
+}
+
+@keyframes borderGlow {
+  from {
+    box-shadow: 0 0 10px var(--neon-primary),
+                inset 0 0 5px var(--neon-primary);
+  }
+  to {
+    box-shadow: 0 0 20px var(--neon-primary),
+                inset 0 0 10px var(--neon-primary);
+  }
+}
+
+@keyframes shine {
+  to {
+    left: 100%;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-accent);
+}
+
+/* Loading animation for forms */
+form button[type="submit"] {
+  position: relative;
+}
+
+form button[type="submit"]:active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--neon-primary);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+/* Base styles (mobile first) */
+.messageBoard {
+  width: 95%;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* Message content max-width for readability */
+#msg { 
+  color: white;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Small screens (up to 767px) */
+@media screen and (max-width: 767px) {
+  .messageBoard {
+    display: block;  /* Single column */
+  }
+  
+  .message-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Medium screens (768px to 1199px) */
+@media screen and (min-width: 768px) {
+  .messageBoard {
+    width: 100%;
+    align-self: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .messageBoard > div > div {
+    width: 45rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex:1;
+  }
+}
+
+/* Large screens (1200px to 1599px) */
+@media screen and (min-width: 1200px) {
+  .messageBoard {
+    width: 85%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+  }
+}
+
+/* Extra Large screens (1600px and up) */
+@media screen and (min-width: 1400px) {
+  .messageBoard {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Handle very small screens */
+@media screen and (max-width: 360px) {
+  .message-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  #highSociety{
+    font-size: 10px;
+  }
+
+  form {
+    padding: 1rem;
+  }
+
+  input, button {
+    padding: 0.8rem;
+  }
+
+  .username {
+    font-size: 0.6rem;
+  }
+
+  .message-content {
+    font-size: 0.9rem;
+  }
+
+  #deleteButton {
+    font-size: 0.5rem;
+    padding: 3px 6px;
+  }
+}
+
+/* Ensure background image covers properly */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  body {
+    min-height: 100vw;
+  }
+}

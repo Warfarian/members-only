@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Neon</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
         <div><a href="/sign-out">LOGOUT</a></div>
-        <div>Are you a member of high society? If yes <a href="/secretForm">Click here</a></div>
+        <div id="highSociety">high society? <a href="/secretForm">Click here</a></div>
     </nav>
     <h1>Welcome!</h1>
     <div class="messageBoard">
         <div><%results.map((res) => { %>
             <div>Guest</div>
-            <div><%=res.message%></div>
+            <div id="msg"><%=res.message%></div>
        <% }) %></div>
     </div>
     <br>
