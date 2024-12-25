@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Neon</title>
+</head>
+<body>
+    <div><a href="/sign-out">LOGOUT</a></div>
+    <h1>Welcome!</h1>
+    <div class="messageBoard">
+        <div><%results.map((res) => { %>
+            <div>Guest</div>
+            <div><%=res.message%></div>
+       <% }) %></div>
+    </div>
+    <br>
+    <form action="/home" method="post">
+        <div>Add a message to the board</div>
+        <label for="message">Add Message</label>
+        <input type="text" name="message" id="message">
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>

@@ -1,13 +1,11 @@
 const { Router } = require("express");
 const router = Router();
-
-router.get('/', (req,res) => {
-    res.render("sign-up.ejs")
-});
+const membersController = require("../controllers/membersController");
 
 
-router.get('/sign-in', (req,res) => {
-    res.render("sign-in.ejs")
-});
+router.get('/', membersController.renderSignUpForm);
+router.get('/sign-in', membersController.renderSignInForm);
+router.get('/home', membersController.fetchAllMessages);
+router.post('/home', membersController.addNewMessage);
 
 module.exports = router;
