@@ -48,8 +48,7 @@ app.get('/sign-out', (req,res,next) => {
 
 app.post("/sign-in", passport.authenticate("local", {
     successRedirect: "/home",
-    failureRedirect: "/sign-in",
-    failureFlash: true
+    failureRedirect: "/sign-in"
 }));
 
 app.post(
